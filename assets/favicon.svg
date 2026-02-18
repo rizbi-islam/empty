@@ -1,0 +1,30 @@
+<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="gradientFill" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#8b5cf6;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#3b82f6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0ea5e9;stop-opacity:1" />
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Background Circle with gradient -->
+  <circle cx="100" cy="100" r="95" fill="url(#gradientFill)" opacity="0.95" filter="url(#glow)"/>
+  <circle cx="100" cy="100" r="95" fill="none" stroke="rgba(255, 255, 255, 0.2)" stroke-width="2"/>
+  
+  <!-- Inner frosted circle -->
+  <circle cx="100" cy="100" r="88" fill="rgba(255, 255, 255, 0.05)" stroke="rgba(255, 255, 255, 0.15)" stroke-width="1"/>
+  
+  <!-- Letter "R" in bold, modern style -->
+  <text x="100" y="125" font-family="'Inter', 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif" font-size="80" font-weight="800" 
+        fill="white" text-anchor="middle" opacity="1">R</text>
+  
+  <!-- Subtle highlight effect on top -->
+  <ellipse cx="100" cy="50" rx="35" ry="25" fill="rgba(255, 255, 255, 0.15)" filter="url(#glow)"/>
+</svg>

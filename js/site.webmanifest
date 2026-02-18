@@ -1,0 +1,23 @@
+{
+    "name": "Rizbi Islam - QA Engineer",
+    "short_name": "Rizbi Islam",
+    "description": "Software Quality Assurance Engineer Portfolio",
+    "start_url": "https://rizbi-islam.github.io/profile/",
+    "display": "standalone",
+    "background_color": "#0f172a",
+    "theme_color": "#0f172a",
+    "icons": [
+        {
+            "src": "https://rizbi-islam.github.io/profile/assets/web-app-manifest-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "https://rizbi-islam.github.io/profile/assets/web-app-manifest-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any maskable"
+        }
+    ]
+}

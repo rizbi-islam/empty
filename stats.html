@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analytics Dashboard - Rizbi Islam QA Engineer</title>
+    
+    <meta name="robots" content="noindex, nofollow">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/stats.css">
+    
+    <!-- Use local favicon assets -->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+</head>
+<body>
+    <div class="stats-container">
+        <div class="dashboard-header">
+            <h1>📊 Analytics Dashboard</h1>
+            <a href="index.html" class="back-link">← Back to Portfolio</a>
+        </div>
+        
+        <!-- Login Form -->
+        <div class="stats-access" id="loginForm">
+            <h2>Secure Access</h2>
+            <p>Enter password to view analytics</p>
+            <input type="password" id="stats-password" placeholder="Enter password">
+            <button onclick="verifyStatsPassword()" id="stats-submit">Access Dashboard</button>
+            <div class="error-message" id="stats-error"></div>
+        </div>
+        
+        <!-- Dashboard (Hidden by default) -->
+        <div id="stats-dashboard">
+            <div class="stats-controls">
+                <button onclick="refreshStats()">🔄 Refresh Data</button>
+                <button onclick="exportStats()">📥 Export as JSON</button>
+                <button onclick="logoutStats()">🚪 Logout</button>
+            </div>
+            
+            <div class="stats-grid" id="stats-summary">
+                <!-- Populated by JavaScript -->
+            </div>
+            
+            <div class="stat-details">
+                <h3>Detailed Analytics</h3>
+                <div id="stats-data">Loading...</div>
+            </div>
+            
+            <div class="export-section">
+                <p class="last-updated" id="lastUpdated"></p>
+            </div>
+        </div>
+    </div>
+    
+    <script src="js/analytics.js"></script>
+    
+    <script>
+        // IMPORTANT: Replace this hash with your own!
+        // Current hash is for password: 'qa2024'
+        // To generate a new hash, run in console:
+        // async function hash(p){const h=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(p));return Array.from(new Uint8Array(h)).map(b=>b.toString(16).padStart(2,'0')).join('')}; hash('your-new-password').then(console.log)
+        const VALID_PASSWORD_HASH = '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918';
+        
+        let attempts = 0;
+        const MAX_ATTEMPTS = 5;
+        let lockedUntil = 0;
+        
+        function verifyStatsPassword() {
+            const now = Date.now();
+            
+            if (now < lockedUntil) {
+                const waitSeconds = Math.ceil((lockedUntil - now) / 1000);
+                showError(`Too many attempts. Try again in ${waitSeconds} seconds.`);
+                return;
+            }
+            
+            const password = document.getElementById('stats-password').value;
+            
+            crypto.subtle.digest('SHA-256', new TextEncoder().encode(password)).then(hash => {
+                const hashArray = Array.from(new Uint8Array(hash));
+                const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+                
+                if (hashHex === VALID_PASSWORD_HASH) {
+                    document.getElementById('stats-dashboard').style.display = 'block';
+                    document.getElementById('loginForm').style.display = 'none';
+                    document.getElementById('stats-error').style.display = 'none';
+                    attempts = 0;
+                    loadStats();
+                    sessionStorage.setItem('stats_authenticated', 'true');
+                } else {
+                    attempts++;
+                    showError('Incorrect password. ' + (MAX_ATTEMPTS - attempts) + ' attempts remaining.');
+                    
+                    if (attempts >= MAX_ATTEMPTS) {
+                        lockedUntil = now + (5 * 60 * 1000);
+                        showError('Too many failed attempts. Locked for 5 minutes.');
+                        document.getElementById('stats-password').disabled = true;
+                        document.getElementById('stats-submit').disabled = true;
+                        
+                        setTimeout(() => {
+                            document.getElementById('stats-password').disabled = false;
+                            document.getElementById('stats-submit').disabled = false;
+                            document.getElementById('stats-error').style.display = 'none';
+                            attempts = 0;
+                        }, 5 * 60 * 1000);
+                    }
+                }
+            });
+        }
+        
+        function showError(message) {
+            const errorEl = document.getElementById('stats-error');
+            errorEl.textContent = message;
+            errorEl.style.display = 'block';
+        }
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            if (sessionStorage.getItem('stats_authenticated') === 'true') {
+                document.getElementById('stats-dashboard').style.display = 'block';
+                document.getElementById('loginForm').style.display = 'none';
+                loadStats();
+            }
+        });
+        
+        function logoutStats() {
+            sessionStorage.removeItem('stats_authenticated');
+            document.getElementById('stats-dashboard').style.display = 'none';
+            document.getElementById('loginForm').style.display = 'block';
+            document.getElementById('stats-password').value = '';
+        }
+        
+        function loadStats() {
+            try {
+                const analytics = window.portfolioAnalytics ? window.portfolioAnalytics.getAnalyticsData() : {};
+                updateSummaryCards(analytics);
+                document.getElementById('stats-data').innerHTML = `<pre>${JSON.stringify(analytics, null, 2)}</pre>`;
+                document.getElementById('lastUpdated').textContent = 'Last updated: ' + new Date().toLocaleString();
+            } catch (error) {
+                document.getElementById('stats-data').innerHTML = `<div style="color: #ef4444;">Error loading stats: ${error.message}</div>`;
+            }
+        }
+        
+        function updateSummaryCards(data) {
+            const summary = document.getElementById('stats-summary');
+            summary.innerHTML = `
+                <div class="stat-card">
+                    <h3>Page Views</h3>
+                    <div class="stat-value">${data.pageViews || 0}</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Unique Visitors</h3>
+                    <div class="stat-value">${data.uniqueVisitors || 0}</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Resume Downloads</h3>
+                    <div class="stat-value">${data.resumeDownloads || 0}</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Email Clicks</h3>
+                    <div class="stat-value">${data.emailClicks || 0}</div>
+                </div>
+            `;
+        }
+        
+        function refreshStats() {
+            loadStats();
+        }
+        
+        function exportStats() {
+            const analytics = window.portfolioAnalytics ? window.portfolioAnalytics.getAnalyticsData() : {};
+            const dataStr = JSON.stringify(analytics, null, 2);
+            const dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
+            
+            const exportFileDefaultName = `portfolio-analytics-${new Date().toISOString().split('T')[0]}.json`;
+            
+            const linkElement = document.createElement('a');
+            linkElement.setAttribute('href', dataUri);
+            linkElement.setAttribute('download', exportFileDefaultName);
+            linkElement.click();
+        }
+        
+        document.getElementById('stats-password')?.addEventListener('keyup', function(e) {
+            if (e.key === 'Enter') {
+                verifyStatsPassword();
+            }
+        });
+    </script>
+</body>
+</html>

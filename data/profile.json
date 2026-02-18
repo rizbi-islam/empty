@@ -1,0 +1,148 @@
+{
+  "personal": {
+    "name": "Rizbi Islam",
+    "title": "Software Quality Assurance Engineer",
+    "tagline": "Expert in Manual & Automation Testing | Framework Builder",
+    "email": "rizbi.cse@gmail.com",
+    "phone": "(+880) 1609084529",
+    "location": "Dhaka, Bangladesh",
+    "summary": "Result-oriented Software Quality Assurance (SQA) Engineer with hands-on experience in manual and automation testing of web applications. I build modern, scalable test automation frameworks using both Playwright and Cypress, implementing industry best practices like Page Object Model and data-driven testing. Skilled in ensuring high-quality releases through comprehensive test strategies and CI/CD integration.",
+    "social": {
+      "linkedin": "https://linkedin.com/in/rizbi-islam",
+      "github": "https://github.com/rizbi-islam",
+      "portfolio": "https://rizbi-islam.github.io/r_repo"
+    },
+    "resume": "assets/resume.pdf"
+  },
+  "skills": {
+    "automationFrameworks": [
+      { "name": "Playwright", "level": 85 },
+      { "name": "Cypress", "level": 80 },
+      { "name": "Selenium WebDriver", "level": 95 },
+      { "name": "TestNG", "level": 90 }
+    ],
+    "programming": [
+      { "name": "JavaScript", "level": 85 },
+      { "name": "Java", "level": 85 }
+    ],
+    "testingTools": [
+      { "name": "Postman", "level": 95 },
+      { "name": "Newman", "level": 90 },
+      { "name": "JMeter", "level": 75 },
+      { "name": "Locust", "level": 70 },
+      { "name": "TestRail", "level": 85 }
+    ],
+    "methodologies": [
+      "Agile/Scrum",
+      "SDLC/STLC",
+      "Page Object Model (POM)",
+      "Data-Driven Testing",
+      "Cross-Browser Testing",
+      "CI/CD with GitHub Actions",
+      "API Testing",
+      "Performance Testing"
+    ],
+    "versionControl": ["Git", "GitHub"],
+    "coreCompetencies": [
+      "End-to-End Test Framework Design",
+      "Defect Tracking & Reporting",
+      "Test Strategy Planning",
+      "Team Collaboration"
+    ]
+  },
+  "projects": [
+    {
+      "id": 1,
+      "title": "Automation Exercise Testing with Playwright",
+      "description": "Built a complete Playwright framework from scratch to test the Automation Exercise website. This framework covers all major user workflows: from signing up and logging in to browsing products, completing purchases, and submitting contact forms. What makes this stand out is the professional setup - I configured it for cross-browser testing (Chrome, Firefox, Safari), parallel execution, and detailed HTML reports that show exactly what went wrong with screenshots and traces when tests fail. The structure is clean and maintainable, with each feature having its own dedicated test file.",
+      "technologies": ["Playwright", "JavaScript", "Node.js"],
+      "keyFeatures": [
+        "Cross-browser testing on Chromium, Firefox, and WebKit",
+        "Parallel test execution for faster runs",
+        "Automatic screenshots on failure",
+        "Detailed trace collection for debugging",
+        "Modular test organization by feature"
+      ],
+      "category": "Automation Testing",
+      "github": "https://github.com/rizbiislam/AutomationExercise_testing",
+      "link": "https://automationexercise.com/",
+      "liveDemo": "https://automationexercise.com/"
+    },
+    {
+      "id": 2,
+      "title": "Automation Exercise Testing with Cypress",
+      "description": "Created a production-ready Cypress framework using the Page Object Model design pattern. This isn't just a bunch of tests thrown together - it's properly engineered with separate files for page locators and actions, making it easy to maintain as the application changes. I set up data-driven testing using JSON files, so test data is separate from test logic. The framework includes organized test suites for smoke, sanity, and regression testing, and it's CI/CD ready with GitHub Actions configured to run tests automatically on every code change.",
+      "technologies": ["Cypress", "JavaScript", "Page Object Model"],
+      "keyFeatures": [
+        "Page Object Model implementation",
+        "Data-driven testing with JSON fixtures",
+        "GitHub Actions CI/CD pipeline",
+        "Organized test suites (smoke, sanity, regression)",
+        "Clean separation of locators and actions"
+      ],
+      "category": "Automation Testing",
+      "github": "https://github.com/rizbiislam/Automation-Exercise-testing-with-Cypress",
+      "link": "https://automationexercise.com/"
+    },
+    {
+      "id": 3,
+      "title": "OpenCart Automation",
+      "description": "This repository appears to contain automation tests for the OpenCart e-commerce platform. The specific details about the framework and technologies used would need to be reviewed from the repository content directly, as access to analyze it wasn't available during this review.",
+      "technologies": ["Automation Framework"],
+      "category": "E-commerce Testing",
+      "note": "Repository content requires direct review for detailed analysis",
+      "github": "https://github.com/rizbiislam/OpenCart-Automation",
+      "link": "https://www.opencart.com/"
+    }
+  ],
+  "experience": [
+    {
+      "id": 1,
+      "company": "RK Software (Bangladesh) Limited",
+      "position": "IT Executive & QA Engineer",
+      "period": "March 2025 – Present",
+      "location": "Dhaka, Bangladesh",
+      "achievements": [
+        "Performed end-to-end testing of full-stack systems including web UIs and backend logic",
+        "Managed the complete defect lifecycle and coordinated fixes and retests for timely releases",
+        "Contributed to two national-level government projects (DNCC & CCC Revenue Management Systems)"
+      ],
+      "technologies": ["Playwright", "Cypress", "Postman", "JMeter"]
+    },
+    {
+      "id": 2,
+      "company": "IT Directorate, Bangladesh Army",
+      "position": "QA Engineer (Part-time)",
+      "period": "Mar 2025 - Nov 2025",
+      "location": "Remote",
+      "achievements": [
+        "Automated critical UI workflows using multiple frameworks based on project needs",
+        "Executed performance and load testing using JMeter and Locust",
+        "Collaborated with developers and stakeholders in Agile/Scrum environments"
+      ],
+      "technologies": ["Selenium", "JMeter", "Locust", "Agile"]
+    }
+  ],
+  "education": [
+    {
+      "degree": "B.Sc. in Computer Science & Engineering (CSE)",
+      "institution": "Daffodil International University",
+      "year": "2023"
+    }
+  ],
+  "certifications": [
+    {
+      "name": "SQA: Manual & Automated Testing",
+      "issuer": "ostad.app",
+      "year": "2023"
+    }
+  ],
+  "stats": {
+    "automationCoverage": 85,
+    "testAccuracy": 92,
+    "bugDetection": 88,
+    "ciCdIntegration": 90,
+    "testEfficiency": 87,
+    "clientSatisfaction": 94
+  }
+}

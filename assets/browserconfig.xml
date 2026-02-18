@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<browserconfig>
+    <msapplication>
+        <tile>
+            <square70x70logo src="https://rizbi-islam.github.io/profile/assets/favicon-16x16.png"/>
+            <square150x150logo src="https://rizbi-islam.github.io/profile/assets/favicon-32x32.png"/>
+            <square310x310logo src="https://rizbi-islam.github.io/profile/assets/android-chrome-192x192.png"/>
+            <TileColor>#0f172a</TileColor>
+        </tile>
+    </msapplication>
+</browserconfig>
